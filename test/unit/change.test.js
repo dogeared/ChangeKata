@@ -10,13 +10,20 @@ var Change = require('../../change.js')
   * test - models - structure
   */
 
-// second pass
-describe('make change 2', function() {
-  it('0', function() {
-    expect(Change.makeChange(0)).to.eql([])
+// third pass
+describe('make change 3', function() {
+  it('0', function(done) {
+    expect(Change.makeChange(0,[])).to.eql([])
+    done()
   })
 
-  it('1', function() {
-    expect(Change.makeChange(1)).to.eql([1])
+  it('1', function(done) {
+    expect(Change.makeChange(1,[])).to.eql([1])
+    done()
+  })
+
+  it('2', function(done) {
+    expect(Change.makeChange(2,[])).to.eql([1, 1])
+    done()
   })
 })
