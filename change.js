@@ -1,10 +1,16 @@
 var Change = {}
 module.exports = Change
 
-// fifth pass - I can handle the 1 and 5 situations; 1 - 9.
+// sixth pass - I can handle the 1, 5 and 10 situations; 1 - 24.
+var getDenom = function(amount) {
+  if (Math.floor(amount/10))     return 10
+  else if (Math.floor(amount/5)) return 5
+  else                           return 1
+}
+
 Change.makeChange = function(amount, change) {
   if (amount <= 0) return change
-  var fivers = Math.floor(amount/5)
-  change.push((fivers)?5:1)
-  return Change.makeChange((fivers)?amount-5:amount-1, change)
+  var denom = getDenom(amount)
+  change.push(denom)
+  return Change.makeChange(amount-denom, change)
 }

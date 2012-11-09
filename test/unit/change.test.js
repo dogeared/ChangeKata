@@ -10,8 +10,8 @@ var Change = require('../../change.js')
   * test - models - structure
   */
 
-// fifth pass
-describe('make change 5', function() {
+// sixth pass
+describe('make change 6', function() {
   var tests = [
     { input: 0,  expected: [] },
     { input: 1,  expected: [1] },
@@ -21,6 +21,13 @@ describe('make change 5', function() {
     { input: 5,  expected: [5] },
     { input: 6,  expected: [5, 1] },
     { input: 9,  expected: [5, 1, 1, 1, 1] },
+    { input: 10, expected: [10] },
+    { input: 11, expected: [10, 1] },
+    { input: 15, expected: [10, 5] },
+    { input: 16, expected: [10, 5, 1] },
+    { input: 19, expected: [10, 5, 1, 1, 1, 1] },
+    { input: 20, expected: [10, 10] },
+    { input: 24, expected: [10, 10, 1, 1, 1, 1] },
   ]
 
   _.each(tests, function(test) {
