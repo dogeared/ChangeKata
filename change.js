@@ -1,7 +1,7 @@
 var Change = {}
 module.exports = Change
 
-// first pass - super simple
+// second pass - now I can do two things
 Change.makeChange = function(amount) {
-  return []
+  return (amount <= 0) ? [] : [1]
 }
