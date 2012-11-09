@@ -10,20 +10,21 @@ var Change = require('../../change.js')
   * test - models - structure
   */
 
-// third pass
-describe('make change 3', function() {
-  it('0', function(done) {
-    expect(Change.makeChange(0,[])).to.eql([])
-    done()
-  })
+// fourth pass - JP rearchitects test
+//   Test is much more readable.
+//   Also, can easily add more tests now.
+describe('make change 4', function() {
+  var tests = [
+    { input: 0,  expected: [] },
+    { input: 1,  expected: [1] },
+    { input: 2,  expected: [1, 1] },
+    { input: 3,  expected: [1, 1, 1] },
+    { input: 4,  expected: [1, 1, 1, 1] },
+  ]
 
-  it('1', function(done) {
-    expect(Change.makeChange(1,[])).to.eql([1])
-    done()
-  })
-
-  it('2', function(done) {
-    expect(Change.makeChange(2,[])).to.eql([1, 1])
-    done()
+  _.each(tests, function(test) {
+    it(test.input, function() {
+      expect(Change.makeChange(test.input, [])).to.eql(test.expected)
+    })
   })
 })
