@@ -1,12 +1,10 @@
 var Change = {}
 module.exports = Change
 
-// third & fourth pass
-//   I can handle the 1 situations; 0 - 4.
-//   Yay recurssion! It's third and fourth because
-//   JP came up with a better test approach
+// fifth pass - I can handle the 1 and 5 situations; 1 - 9.
 Change.makeChange = function(amount, change) {
   if (amount <= 0) return change
-  change.push(1)
-  return Change.makeChange(amount-1, change)
+  var fivers = Math.floor(amount/5)
+  change.push((fivers)?5:1)
+  return Change.makeChange((fivers)?amount-5:amount-1, change)
 }
