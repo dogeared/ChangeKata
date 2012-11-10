@@ -1,22 +1,19 @@
 var Change = {}
 module.exports = Change
 
-// ninth pass - JP's solution
+// tenth - Micah's again. I like it better.
 //   I can handle all the 1, 5, 10 and 25 situations.
-//   This is more compact, but less readable.
-var changer = function(amount, change, preferred) {
-  if (amount <= 0) 
-    return change
-  else if (Math.floor(amount/preferred[0])) {
-    change.push(preferred[0])
-    return changer(amount-preferred[0], change, preferred)
-  } else {
-    preferred.shift()
-    return changer(amount, change, preferred)
+//   This is my favorite solution for readability and
+//   compactness. Simple "for" loop trumps fancy array
+//   manipulation.
+var getDenom = function(amount, types) {
+  for (var i = 0; i < types.length; i++) {
+    if (Math.floor(amount/types[i])) return types[i]
   }
 }
 
-
 Change.makeChange = function(amount, change) {
-  return changer(amount, change, [25, 10, 5, 1]) 
+  if (amount <= 0) return change
+  var denom = getDenom(amount, [25, 10, 5, 1])
+  return Change.makeChange(amount-denom, change.concat(denom))
 }
