@@ -1,19 +1,15 @@
 var Change = {}
 module.exports = Change
 
-// seventh pass - 
+// eigth pass -
 //   I can handle all the 1, 5, 10 and 25 situations.
-//   But it's ugly.
+//   Still seems like there is room for improvement
+//   on the getDenom function.
 var getDenom = function(amount) {
-  var denom = 1;
-  [25, 10, 5].some(function(moolah) {
-    if (Math.floor(amount/moolah)) {
-      denom = moolah
-      return true
-    } else
-      return false
-  })
-  return denom
+  if (Math.floor(amount/25))      return 25
+  else if (Math.floor(amount/10)) return 10
+  else if (Math.floor(amount/5))  return 5
+  else                            return 1
 }
 
 Change.makeChange = function(amount, change) {
