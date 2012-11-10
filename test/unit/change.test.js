@@ -39,7 +39,7 @@ var tests = [
   { input: 100, expected: [25, 25, 25, 25] }
 ]
 
-describe('make change 8', function() {
+describe('make change 9', function() {
   _.each(tests, function(test) {
     it(test.input, function() {
       expect(Change.makeChange(test.input, [])).to.eql(test.expected)

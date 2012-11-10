@@ -1,20 +1,22 @@
 var Change = {}
 module.exports = Change
 
-// eigth pass -
+// ninth pass - JP's solution
 //   I can handle all the 1, 5, 10 and 25 situations.
-//   Still seems like there is room for improvement
-//   on the getDenom function.
-var getDenom = function(amount) {
-  if (Math.floor(amount/25))      return 25
-  else if (Math.floor(amount/10)) return 10
-  else if (Math.floor(amount/5))  return 5
-  else                            return 1
+//   This is more compact, but less readable.
+var changer = function(amount, change, preferred) {
+  if (amount <= 0) 
+    return change
+  else if (Math.floor(amount/preferred[0])) {
+    change.push(preferred[0])
+    return changer(amount-preferred[0], change, preferred)
+  } else {
+    preferred.shift()
+    return changer(amount, change, preferred)
+  }
 }
 
+
 Change.makeChange = function(amount, change) {
-  if (amount <= 0) return change
-  var denom = getDenom(amount)
-  change.push(denom)
-  return Change.makeChange(amount-denom, change)
+  return changer(amount, change, [25, 10, 5, 1]) 
 }
